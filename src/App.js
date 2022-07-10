@@ -4,39 +4,43 @@ import api from './api';
 
 class App extends Component {
   state= {
-    products: [],
+    filmes: [],
   }
 
   async componentDidMount() {
     // valor do objeto ali nos parenteses logo após api.get
     const response = await api.get(''); 
 
-    this.setState({ products: response.data});
+    // console.log(response.data);
+
+    this.setState({ filmes: response.data});
   }
 
   render() {
 
-    const { products } = this.state;
+    const { filmes } = this.state;
 
     return (
        <div>
-          <h1>salve</h1>
-          {products.map(products => (
-            <li key={products.show.id}>
+          <h1>Listar os filmes</h1>
+          {console.log(filmes)}
+          {filmes.map(filme => (
+            <li key={filme.show.id}>
               <h2>
                 <strong>titulo: </strong>
-                {products.show.name}
+                {filme.show.name}
               </h2>
               <p>
-                {products.show.url}
+                {filme.show.url}
               </p>
             </li>
-          )}
+          ))}
        </div>
     );
   };
 };
 
+export default App;
 
 {/* import logo from './logo.svg';
 import './App.css';
